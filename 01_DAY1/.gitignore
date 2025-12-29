@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environment
+# Change "venv" to the name of your virtual environment folder if different
+venv/
+env/
+ENV/
+bin/
+include/
+lib/
+share/
+
+# Environment variables
+# Used to store sensitive API keys, etc.
+.env
+.flaskenv
+
+# Editor/IDE-specific files
+# VS Code
+.vscode/
+# JetBrains IDEs (PyCharm, etc.)
+.idea/
+
+# Operating System files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# FastAPI/Uvicorn specific cache/meta files (optional)
+.mypy_cache/
+.pytest_cache/
+htmlcov/
+.coverage*
