@@ -7,7 +7,7 @@ on:
 
 jobs:
   static-analysis: # mypy, black, ruff 등 정적 분석
-    run-on: ubuntu-22.04 # 실제 프로덕션에서는 모든 버전을 고정하는 것이 좋다.
+    runs-on: ubuntu-22.04 # 실제 프로덕션에서는 모든 버전을 고정하는 것이 좋다.
     #예기치 못한 버전업 환경에서의 동작을 방지
 
     steps:
