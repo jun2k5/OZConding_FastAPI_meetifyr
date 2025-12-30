@@ -28,6 +28,7 @@ jobs:
 
       - name: Install dependencies
         run: poetry install --no-root
+        working-directory: ./02_DAY2/FastAPI인강/testenv  # pyproject.toml이 들어있는 폴더 경로
 
       - name: Run Black
         run: poetry run black . --check
