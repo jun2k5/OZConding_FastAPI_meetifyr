@@ -1,10 +1,11 @@
 import string
-from typing import Final, ClassVar
-from uuid import uuid
+from typing import ClassVar, Final
+from uuid import uuid4
+
 
 class Base62:
     BASE: Final[ClassVar[str]] = string.ascii_letters + string.digits
-    BASE_LEN: Final[ClassVar[str]] = len(BASE)
+    BASE_LEN: Final[ClassVar[int]] = len(BASE)
 
     @classmethod
     def encode(cls, num: int) -> str:
@@ -20,6 +21,5 @@ class Base62:
             result.append(cls.BASE[remainder])
         return "".join(result)
 
-print(Base62.encode(uuid.uuid4().int))
 
-
+print(Base62.encode(uuid4().int))

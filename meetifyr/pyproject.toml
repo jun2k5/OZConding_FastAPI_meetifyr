@@ -8,16 +8,19 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 sqids = "^0.5.2"
+cryptography = "44.0.0"
+aerich = "0.8.1"
+tomlkit = "0.13.2"
+pydantic-settings = "2.7.1"
+httpx = "0.28.1"
 
+[tool.poetry.dependencies.tortoise-orm]
+version = "0.23.0"
+extras = ["asyncmy"]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-
-[tool.poetry.group.dec.dependencies]
-fastapi = {extras = ["standard"], version = "^0.128.0"}
-
+[tool.poetry.group.dec.dependencies.fastapi]
+extras = ["standard"]
+version = "^0.128.0"
 
 [tool.poetry.group.dev.dependencies]
 uvicorn = "^0.40.0"
@@ -41,9 +44,18 @@ omit = ["*/test_*.py"]
 line-length = 120
 
 [tool.ruff]
-target-version="py314"
+target-version = "py314"
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
 python_version = 3.13
 strict = true
+
+[tool.aerich]
+tortoise_orm = "meetifyr.configs.tortoise_config.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
