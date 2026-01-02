@@ -60,7 +60,6 @@ jobs:
         run: poetry run mypy .
 
   test:
-    needs: static-analysis
     runs-on: ubuntu-22.04
     defaults:
       run:
