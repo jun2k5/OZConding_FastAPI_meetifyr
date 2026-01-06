@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from meetifyr.dtos.create_meeting_response import CreateMeetingResponse
+from meetifyr.services.meeting_service_mysql import service_create_meeting_mysql
 
 edgedb_router = APIRouter(prefix="/v1/edgedb/meetings", tags=["Meeting"], redirect_slashes=False)
 mysql_router = APIRouter(prefix="/v1/mysql/meetings", tags=["Meeting"], redirect_slashes=False)
@@ -10,10 +11,7 @@ mysql_router = APIRouter(prefix="/v1/mysql/meetings", tags=["Meeting"], redirect
 # 실전에서는 db이름을 url에 넣지말 것.
 
 
-@edgedb_router.post(
-    "",
-    description="meeting 을 생성합니다.",
-)
+@edgedb_router.post("", description="meeting 을 생성합니다.")
 async def api_create_meeting_edgedb() -> CreateMeetingResponse:
     return CreateMeetingResponse(url_code="abc")
 
@@ -24,9 +22,6 @@ async def api_create_meeting_edgedb() -> CreateMeetingResponse:
 # 3.서버단에서 실수로 key를 누락하거나 추가해도 오류를 잡기 어렵다.
 
 
-@mysql_router.post(
-    "",
-    description="meeting 을 생성합니다.",
-)
+@mysql_router.post("", description="meeting 을 생성합니다.")
 async def api_create_meeting_mysql() -> CreateMeetingResponse:
-    return CreateMeetingResponse(url_code="abc")
+    return CreateMeetingResponse(url_code=(await service_create_meeting_mysql()).url_code)
