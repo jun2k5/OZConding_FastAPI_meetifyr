@@ -100,7 +100,7 @@ jobs:
         uses: actions/cache@v4
         with:
           key: python-${{ steps.setup-python.outputs.python-version }}-poetry-lock-${{ hashFiles('meetifyr/poetry.lock') }}-toml-${{ hashFiles('meetifyr/pyproject.toml') }}-poetry-1.8.5
-          path: /home/runner/.cache/pypoetry/virtualenvs/
+          path: /home/runner/.cache/pypoetry/virtua lenvs/
 
       - name: Install dependencies
         if: steps.cache-venv.outputs.cache-hit != 'true'

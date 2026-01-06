@@ -55,3 +55,4 @@ Thumbs.db # Windows
 .pytest_cache/
 htmlcov/
 .coverage*
+.dmypy.json
