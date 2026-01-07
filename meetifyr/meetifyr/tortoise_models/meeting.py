@@ -20,3 +20,7 @@ class MeetingModel(BaseModel, Model):
     # MYSQL은 VARCHAR의 길이가 255보다 낮아도 255의 공간을 사용한다.
 
     # 응집성
+
+    @classmethod
+    async def get_by_url_code(cls, url_code: str) -> MeetingModel | None:
+        return await cls.filter(url_code=url_code).get_or_none()
