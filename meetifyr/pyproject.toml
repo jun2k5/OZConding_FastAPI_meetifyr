@@ -6,17 +6,15 @@ authors = ["jun2k5 <jun2k5@naver.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.14"
 sqids = "^0.5.2"
 cryptography = "44.0.0"
-aerich = "0.8.1"
+aerich = "^0.9.2"
 tomlkit = "0.13.2"
 pydantic-settings = "2.7.1"
 httpx = "0.28.1"
-
-[tool.poetry.dependencies.tortoise-orm]
-version = "0.23.0"
-extras = ["asyncmy"]
+tortoise-orm = "^0.25.3"
+aiomysql = "^0.3.2"
 
 [tool.poetry.group.dec.dependencies.fastapi]
 extras = ["standard"]
@@ -49,7 +47,7 @@ target-version = "py314"
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
-python_version = 3.13
+python_version = 3.14
 strict = true
 
 [tool.aerich]
