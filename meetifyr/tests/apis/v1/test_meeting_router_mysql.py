@@ -128,8 +128,6 @@ class TestMeetingRouter(TestCase):
         response_body = response.json()
         assert response_body["detail"] == "meeting with url_code: invalid_url not found"
 
-
-
     async def test_api_update_meeting_title(self) -> None:
         async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
             # Given

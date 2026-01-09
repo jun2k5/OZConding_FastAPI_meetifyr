@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter, HTTPException
 from starlette.status import (
     HTTP_204_NO_CONTENT,
@@ -9,6 +8,7 @@ from starlette.status import (
 from meetifyr.dtos.create_meeting_response import CreateMeetingResponse
 from meetifyr.dtos.get_meeting_response import GetMeetingResponse
 from meetifyr.dtos.update_meeting_request import (
+    MEETING_DATE_MAX_RANGE,
     UpdateMeetingDateRangeRequest,
     UpdateMeetingLocationRequest,
     UpdateMeetingTitleRequest,
@@ -18,7 +18,7 @@ from meetifyr.services.meeting_service_mysql import (
     service_get_meeting_mysql,
     service_update_meeting_date_range_mysql,
     service_update_meeting_location_mysql,
-    service_update_meeting_title_mysql
+    service_update_meeting_title_mysql,
 )
 
 edgedb_router = APIRouter(prefix="/v1/edgedb/meetings", tags=["Meeting"], redirect_slashes=False)
@@ -68,7 +68,7 @@ async def api_update_meeting_date_range_mysql(
     if update_meeting_date_range_request.exceeds_max_range():
         raise HTTPException(
             status_code=HTTP_422_UNPROCESSABLE_CONTENT,
-            detail=f"start {update_meeting_date_range_request.start_date} and end {update_meeting_date_range_request.end_date} days",
+            detail=f"start {update_meeting_date_range_request.start_date} and end {update_meeting_date_range_request.end_date} should be within {MEETING_DATE_MAX_RANGE.days} days",
         )
 
     meeting_before_update = await service_get_meeting_mysql(meeting_url_code)
@@ -97,7 +97,6 @@ async def api_update_meeting_date_range_mysql(
         title=meeting_after_update.title,
         location=meeting_after_update.location,
     )
-
 
 
 @mysql_router.patch(
@@ -130,5 +129,3 @@ async def api_update_meeting_location_mysql(
             status_code=HTTP_404_NOT_FOUND, detail=f"meeting with url_code: {meeting_url_code} not found"
         )
     return None
-
-

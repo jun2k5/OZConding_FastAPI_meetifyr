@@ -36,15 +36,9 @@ class MeetingModel(BaseModel, Model):
         await cls.filter(url_code=url_code).update(start_date=start_date, end_date=end_date)
 
     @classmethod
-    async def update_title(cls, url_code: str, title:str) -> int:
+    async def update_title(cls, url_code: str, title: str) -> int:
         return await cls.filter(url_code=url_code).update(title=title)
 
     @classmethod
-    async def update_location(cls, url_code: str, location:str) -> int:
+    async def update_location(cls, url_code: str, location: str) -> int:
         return await cls.filter(url_code=url_code).update(location=location)
-
-
-
-
-
-

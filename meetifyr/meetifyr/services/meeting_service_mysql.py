@@ -27,10 +27,3 @@ async def service_update_meeting_location_mysql(url_code: str, location: str) ->
 
 async def service_update_meeting_title_mysql(url_code: str, title: str) -> int:
     return await MeetingModel.update_title(url_code, title)
-
-
-
-
-
-
-

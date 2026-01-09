@@ -6,6 +6,8 @@ from meetifyr.configs import config
 
 TORTOISE_APP_MODELS = [
     "meetifyr.tortoise_models.meeting",
+    "meetifyr.tortoise_models.participant",
+    "meetifyr.tortoise_models.participant_date",
     "aerich.models",
 ]
 
