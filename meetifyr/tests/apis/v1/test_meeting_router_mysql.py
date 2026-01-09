@@ -126,10 +126,3 @@ class TestMeetingRouter(TestCase):
         assert response.status_code == HTTP_404_NOT_FOUND
         response_body = response.json()
         assert response_body["detail"] == "meeting with url_code: invalid_url not found"
-
-
-
-
-
-
-
