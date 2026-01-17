@@ -6,7 +6,11 @@ from starlette.status import (
 )
 
 from meetifyr.dtos.create_meeting_response import CreateMeetingResponse
-from meetifyr.dtos.get_meeting_response import GetMeetingResponse
+from meetifyr.dtos.get_meeting_response import (
+    GetMeetingResponse,
+    ParticipantDateResponse,
+    ParticipantResponse,
+)
 from meetifyr.dtos.update_meeting_request import (
     MEETING_DATE_MAX_RANGE,
     UpdateMeetingDateRangeRequest,
@@ -58,7 +62,14 @@ async def api_get_meeting_mysql(meeting_url_code: str) -> GetMeetingResponse:
         start_date=meeting.start_date,
         title=meeting.title,
         location=meeting.location,
-        participants=[],
+        participants=[
+            ParticipantResponse(
+                id=p.id,
+                name=p.name,
+                dates=[ParticipantDateResponse(date=pd.date, id=pd.id) for pd in p.participant_dates],
+            )
+            for p in meeting.participants
+        ],
     )
 
 
@@ -97,7 +108,14 @@ async def api_update_meeting_date_range_mysql(
         end_date=meeting_after_update.end_date,
         title=meeting_after_update.title,
         location=meeting_after_update.location,
-        participants=[],
+        participants=[
+            ParticipantResponse(
+                id=p.id,
+                name=p.name,
+                dates=[ParticipantDateResponse(date=pd.date, id=pd.id) for pd in p.participant_dates],
+            )
+            for p in meeting_after_update.participants
+        ],
     )
 
 

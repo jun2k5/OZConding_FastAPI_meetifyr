@@ -1,7 +1,14 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from tortoise import Model, fields
 
 from meetifyr.tortoise_models.base_model import BaseModel
 from meetifyr.tortoise_models.meeting import MeetingModel
+
+if TYPE_CHECKING:
+    from meetifyr.tortoise_models.participant_date import ParticipantDateModel
 
 
 class ParticipantModel(BaseModel, Model):
@@ -12,10 +19,10 @@ class ParticipantModel(BaseModel, Model):
         db_constraint=False,
         on_delete=fields.CASCADE,
         to_field="url_code",
-        # db 에는 meeting_id 로 생성됩니다. 이걸 컨트롤하는 방법을 제공하지 않습니다 ㅠㅠ
-        # https://tortoise.github.io/fields.html?h=foreignkey
+        index=True,
     )
     meeting_id: str
+    participant_dates: list[ParticipantDateModel]  # 추가
 
     class Meta:
         table = "participants"
